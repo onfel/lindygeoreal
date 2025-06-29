@@ -1,8 +1,28 @@
-/* Global Styles */
+/* Global Styles - Performance Optimized */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Performance optimizations */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* GPU acceleration for animations */
+.star, .btn, .contact-method, .card {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Reduce layout thrash */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 html,
@@ -92,9 +112,18 @@ body::after {
 @keyframes twinkle {
   0%, 100% {
     opacity: 0.2;
+    transform: translateZ(0);
   }
   50% {
     opacity: 0.8;
+    transform: translateZ(0);
+  }
+}
+
+/* Optimize spinner animation for 60fps */
+@keyframes spin {
+  to {
+    transform: rotate(360deg) translateZ(0);
   }
 }
 
@@ -1273,11 +1302,7 @@ blockquote {
   margin-right: 0.5rem;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* Removed duplicate spin animation - optimized version above */
 
 /* Form Footer */
 .form-footer {

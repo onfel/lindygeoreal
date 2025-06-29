@@ -4,11 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lindy GEO – SEO Solution</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Use Inter for modern clean text and a serif italic for accent -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  
+  <!-- Performance optimizations -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://formspree.io" />
+  
+  <!-- Critical CSS preload -->
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="styles.css" /></noscript>
+  
+  <!-- Optimized font loading with font-display: swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" /></noscript>
+  
+  <!-- SEO and performance meta tags -->
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#070a12" />
+  
+  <!-- Critical above-the-fold CSS inline for faster rendering -->
+  <style>
+    body{font-family:'Plus Jakarta Sans',Arial,sans-serif;color:#fff;background:#070a12;overflow-x:hidden}
+    .navbar{width:100%;padding:1.2rem 0;background:transparent}
+    .container{width:90%;max-width:1200px;margin:0 auto}
+    .hero{min-height:calc(100vh - 80px);display:flex;align-items:center;position:relative}
+    .hero-content{text-align:center}
+    .hero-title{font-size:clamp(2rem,5vw,4rem);font-weight:800;line-height:1.1;margin-bottom:1.5rem}
+    .btn-primary{display:inline-block;padding:0.75rem 2rem;border-radius:999px;text-decoration:none;font-weight:600;background:linear-gradient(135deg,#286bff 0%,#8a5bff 50%,#ff6ec4 100%);color:#fff}
+  </style>
 </head>
 <body>
   <div class="background-grid"></div>
@@ -253,24 +277,41 @@
   </footer>
 
   <script>
-    /* Simple twinkling stars effect */
-    const starContainer = document.getElementById('stars');
-    const STAR_COUNT = 100;
-    for (let i = 0; i < STAR_COUNT; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.top = Math.random() * 100 + '%';
-      star.style.left = Math.random() * 100 + '%';
-      star.style.animationDelay = Math.random() * 5 + 's';
-      starContainer.appendChild(star);
+    /* Performance-optimized scripts */
+    
+    // Use requestAnimationFrame for smooth animations
+    function initializeStars() {
+      const starContainer = document.getElementById('stars');
+      const STAR_COUNT = 100;
+      const fragment = document.createDocumentFragment();
+      
+      for (let i = 0; i < STAR_COUNT; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 5 + 's';
+        fragment.appendChild(star);
+      }
+      
+      starContainer.appendChild(fragment);
+    }
+    
+    // Initialize stars after DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeStars);
+    } else {
+      initializeStars();
     }
 
-    /* Enhanced Contact Form Functionality */
-    document.addEventListener('DOMContentLoaded', function() {
+    /* Enhanced Contact Form Functionality - Performance Optimized */
+    function initializeContactForm() {
       const form = document.getElementById('contactForm');
+      if (!form) return; // Early exit if form not found
+      
       const submitBtn = document.getElementById('submit-btn');
-      const btnText = submitBtn.querySelector('.btn-text');
-      const btnLoading = submitBtn.querySelector('.btn-loading');
+      const btnText = submitBtn?.querySelector('.btn-text');
+      const btnLoading = submitBtn?.querySelector('.btn-loading');
       const messageTextarea = document.getElementById('message');
       const charCount = document.getElementById('char-count');
       const charCounter = document.querySelector('.char-counter');
@@ -278,46 +319,54 @@
       const successMessage = document.getElementById('success-message');
       const errorMessage = document.getElementById('error-message');
 
-      // Character counter for message field
-      messageTextarea.addEventListener('input', function() {
-        const length = this.value.length;
-        charCount.textContent = length;
-        
-        // Update counter styling based on length
-        charCounter.className = 'char-counter';
-        if (length > 400) {
-          charCounter.classList.add('warning');
-        }
-        if (length > 500) {
-          charCounter.classList.add('error');
-        }
+      // Character counter for message field - throttled for performance
+      let charCountTimer;
+      messageTextarea?.addEventListener('input', function() {
+        clearTimeout(charCountTimer);
+        charCountTimer = setTimeout(() => {
+          const length = this.value.length;
+          if (charCount) charCount.textContent = length;
+          
+          // Update counter styling based on length
+          if (charCounter) {
+            charCounter.className = 'char-counter';
+            if (length > 400) charCounter.classList.add('warning');
+            if (length > 500) charCounter.classList.add('error');
+          }
+        }, 100);
       });
 
-      // Phone number formatting
+      // Phone number formatting - optimized with debouncing
       const phoneInput = document.getElementById('phone');
-      phoneInput.addEventListener('input', function() {
-        let value = this.value.replace(/\D/g, ''); // Remove non-digits
-        
-        // Format Indian phone numbers
-        if (value.startsWith('91')) {
-          // International format: +91 XXXXX XXXXX
-          if (value.length <= 2) {
-            this.value = '+' + value;
-          } else if (value.length <= 7) {
-            this.value = '+' + value.slice(0, 2) + ' ' + value.slice(2);
-          } else if (value.length <= 12) {
-            this.value = '+' + value.slice(0, 2) + ' ' + value.slice(2, 7) + ' ' + value.slice(7);
-          }
-        } else if (value.length === 10) {
-          // Domestic format: XXXXX XXXXX
-          this.value = value.slice(0, 5) + ' ' + value.slice(5);
-        } else if (value.length > 10) {
-          // International format starting with +
-          if (!this.value.startsWith('+')) {
-            this.value = '+' + value;
-          }
-        }
-      });
+      if (phoneInput) {
+        let phoneTimer;
+        phoneInput.addEventListener('input', function() {
+          clearTimeout(phoneTimer);
+          phoneTimer = setTimeout(() => {
+            let value = this.value.replace(/\D/g, ''); // Remove non-digits
+            
+            // Format Indian phone numbers
+            if (value.startsWith('91')) {
+              // International format: +91 XXXXX XXXXX
+              if (value.length <= 2) {
+                this.value = '+' + value;
+              } else if (value.length <= 7) {
+                this.value = '+' + value.slice(0, 2) + ' ' + value.slice(2);
+              } else if (value.length <= 12) {
+                this.value = '+' + value.slice(0, 2) + ' ' + value.slice(2, 7) + ' ' + value.slice(7);
+              }
+            } else if (value.length === 10) {
+              // Domestic format: XXXXX XXXXX
+              this.value = value.slice(0, 5) + ' ' + value.slice(5);
+            } else if (value.length > 10) {
+              // International format starting with +
+              if (!this.value.startsWith('+')) {
+                this.value = '+' + value;
+              }
+            }
+          }, 150);
+        });
+      }
 
       // Real-time validation
       const inputs = form.querySelectorAll('input, textarea');
@@ -456,8 +505,8 @@
             // Success
             showMessage('success');
             form.reset();
-            charCount.textContent = '0';
-            charCounter.className = 'char-counter';
+            if (charCount) charCount.textContent = '0';
+            if (charCounter) charCounter.className = 'char-counter';
             
             // Clear all field states
             inputs.forEach(input => {
@@ -477,23 +526,25 @@
         }
 
         // Reset button state
-        submitBtn.disabled = false;
-        btnText.style.display = 'inline';
-        btnLoading.style.display = 'none';
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          if (btnText) btnText.style.display = 'inline';
+          if (btnLoading) btnLoading.style.display = 'none';
+        }
       });
 
       function showMessage(type) {
-        formMessages.style.display = 'block';
-        successMessage.style.display = type === 'success' ? 'flex' : 'none';
-        errorMessage.style.display = type === 'error' ? 'flex' : 'none';
+        if (formMessages) formMessages.style.display = 'block';
+        if (successMessage) successMessage.style.display = type === 'success' ? 'flex' : 'none';
+        if (errorMessage) errorMessage.style.display = type === 'error' ? 'flex' : 'none';
         
         // Scroll to message
-        formMessages.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (formMessages) formMessages.scrollIntoView({ behavior: 'smooth', block: 'center' });
         
         // Auto-hide success message after 8 seconds
         if (type === 'success') {
           setTimeout(() => {
-            formMessages.style.display = 'none';
+            if (formMessages) formMessages.style.display = 'none';
           }, 8000);
         }
       }
@@ -507,7 +558,14 @@
           });
         });
       });
-    });
+    }
+    
+    // Initialize contact form when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeContactForm);
+    } else {
+      initializeContactForm();
+    }
   </script>
 </body>
 </html> 
