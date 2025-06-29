@@ -227,6 +227,7 @@
                 <label for="company">Company Name</label>
                 <input type="text" id="company" name="company" aria-describedby="company-help">
                 <div class="help-text" id="company-help">Optional - helps us understand your business better</div>
+                <div class="error-text" id="company-error"></div>
               </div>
             </div>
             
@@ -447,12 +448,16 @@
         // Update field appearance and error message
         if (isValid) {
           field.classList.add('success');
-          errorDiv.textContent = '';
-          errorDiv.classList.remove('show');
+          if (errorDiv) {
+            errorDiv.textContent = '';
+            errorDiv.classList.remove('show');
+          }
         } else {
           field.classList.add('error');
-          errorDiv.textContent = errorMessage;
-          errorDiv.classList.add('show');
+          if (errorDiv) {
+            errorDiv.textContent = errorMessage;
+            errorDiv.classList.add('show');
+          }
         }
 
         return isValid;
@@ -462,7 +467,9 @@
         const field = e.target;
         const errorDiv = document.getElementById(field.id + '-error');
         field.classList.remove('error');
-        errorDiv.classList.remove('show');
+        if (errorDiv) {
+          errorDiv.classList.remove('show');
+        }
       }
 
       // Form submission
