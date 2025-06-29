@@ -109,13 +109,130 @@
     </div>
   </section>
 
-  <!-- Final CTA Section -->
-  <section id="contact" class="hero" style="min-height:40vh;">
-    <div class="container hero-content">
-      <h2 class="about-title">Ready to Secure Your Future?</h2>
-      <p class="about-text" style="max-width:600px;margin:0 auto 2rem auto;">Don't let the next era of search leave you behind. Let's build your brand's enduring presence together.</p>
-      <a href="mailto:hello@lindygeo.com" class="btn btn-primary btn-cta">Get Your Free GEO Analysis</a>
-      <p style="margin-top:1rem;font-size:0.9rem;">Email: hello@lindygeo.com | Phone: +91-xxxxxxxxxx</p>
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info-section">
+          <h2 class="about-title">Ready to Secure Your Future?</h2>
+          <p class="about-text">Don't let the next era of search leave you behind. Let's build your brand's enduring presence together.</p>
+          
+          <div class="contact-methods">
+            <div class="contact-method">
+              <div class="contact-icon">📧</div>
+              <div>
+                <h4>Email Us</h4>
+                <a href="mailto:hello@lindygeo.com">hello@lindygeo.com</a>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-icon">📞</div>
+              <div>
+                <h4>Call Us</h4>
+                <a href="tel:+919374800000">+91 9374800000</a>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-icon">💼</div>
+              <div>
+                <h4>LinkedIn</h4>
+                <a href="https://www.linkedin.com/company/lindy-geo" target="_blank">Connect with us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-section">
+          <form class="contact-form" action="https://formspree.io/f/mblywrvd" method="POST" id="contactForm">
+            <div class="form-header">
+              <h3>Get Your Free GEO Analysis</h3>
+              <p class="form-subtitle">Tell us about your project and we'll get back to you within 24 hours</p>
+            </div>
+            
+            <!-- Form Messages -->
+            <div id="form-messages" class="form-messages" style="display: none;">
+              <div class="message success-message" id="success-message">
+                <div class="message-icon">✅</div>
+                <div>
+                  <h4>Thank you! Message sent successfully.</h4>
+                  <p>We'll get back to you within 24 hours.</p>
+                </div>
+              </div>
+              <div class="message error-message" id="error-message">
+                <div class="message-icon">❌</div>
+                <div>
+                  <h4>Oops! Something went wrong.</h4>
+                  <p>Please try again or email us directly at hello@lindygeo.com</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name <span class="required">*</span></label>
+                <input type="text" id="firstName" name="firstName" required aria-describedby="firstName-error">
+                <div class="error-text" id="firstName-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name <span class="required">*</span></label>
+                <input type="text" id="lastName" name="lastName" required aria-describedby="lastName-error">
+                <div class="error-text" id="lastName-error"></div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address <span class="required">*</span></label>
+              <input type="email" id="email" name="email" required aria-describedby="email-error">
+              <div class="error-text" id="email-error"></div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+91 9876543210" aria-describedby="phone-help phone-error">
+                <div class="help-text" id="phone-help">Optional - for urgent project discussions</div>
+                <div class="error-text" id="phone-error"></div>
+              </div>
+              <div class="form-group">
+                <label for="company">Company Name</label>
+                <input type="text" id="company" name="company" aria-describedby="company-help">
+                <div class="help-text" id="company-help">Optional - helps us understand your business better</div>
+              </div>
+            </div>
+            
+                          <div class="form-group">
+                <label for="website">Website URL</label>
+                <input type="url" id="website" name="website" placeholder="yoursite.com or https://yoursite.com" aria-describedby="website-help website-error">
+                <div class="help-text" id="website-help">We'll analyze your current SEO setup</div>
+                <div class="error-text" id="website-error"></div>
+              </div>
+            
+            <div class="form-group">
+              <label for="message">Tell us about your project <span class="required">*</span></label>
+              <textarea id="message" name="message" rows="4" required placeholder="Describe your current SEO challenges, goals, and what you'd like to achieve with GEO..." aria-describedby="message-error message-help"></textarea>
+              <div class="help-text" id="message-help">Be specific about your challenges - this helps us provide better insights</div>
+              <div class="error-text" id="message-error"></div>
+              <div class="char-counter">
+                <span id="char-count">0</span>/500 characters
+              </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
+              <span class="btn-text">Send Message</span>
+              <span class="btn-loading" style="display: none;">
+                <span class="spinner"></span>
+                Sending...
+              </span>
+            </button>
+            
+            <div class="form-footer">
+              <p>🔒 Your information is secure and will never be shared with third parties.</p>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -147,6 +264,250 @@
       star.style.animationDelay = Math.random() * 5 + 's';
       starContainer.appendChild(star);
     }
+
+    /* Enhanced Contact Form Functionality */
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submit-btn');
+      const btnText = submitBtn.querySelector('.btn-text');
+      const btnLoading = submitBtn.querySelector('.btn-loading');
+      const messageTextarea = document.getElementById('message');
+      const charCount = document.getElementById('char-count');
+      const charCounter = document.querySelector('.char-counter');
+      const formMessages = document.getElementById('form-messages');
+      const successMessage = document.getElementById('success-message');
+      const errorMessage = document.getElementById('error-message');
+
+      // Character counter for message field
+      messageTextarea.addEventListener('input', function() {
+        const length = this.value.length;
+        charCount.textContent = length;
+        
+        // Update counter styling based on length
+        charCounter.className = 'char-counter';
+        if (length > 400) {
+          charCounter.classList.add('warning');
+        }
+        if (length > 500) {
+          charCounter.classList.add('error');
+        }
+      });
+
+      // Phone number formatting
+      const phoneInput = document.getElementById('phone');
+      phoneInput.addEventListener('input', function() {
+        let value = this.value.replace(/\D/g, ''); // Remove non-digits
+        
+        // Format Indian phone numbers
+        if (value.startsWith('91')) {
+          // International format: +91 XXXXX XXXXX
+          if (value.length <= 2) {
+            this.value = '+' + value;
+          } else if (value.length <= 7) {
+            this.value = '+' + value.slice(0, 2) + ' ' + value.slice(2);
+          } else if (value.length <= 12) {
+            this.value = '+' + value.slice(0, 2) + ' ' + value.slice(2, 7) + ' ' + value.slice(7);
+          }
+        } else if (value.length === 10) {
+          // Domestic format: XXXXX XXXXX
+          this.value = value.slice(0, 5) + ' ' + value.slice(5);
+        } else if (value.length > 10) {
+          // International format starting with +
+          if (!this.value.startsWith('+')) {
+            this.value = '+' + value;
+          }
+        }
+      });
+
+      // Real-time validation
+      const inputs = form.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', clearErrors);
+      });
+
+      function validateField(e) {
+        const field = e.target;
+        const errorDiv = document.getElementById(field.id + '-error');
+        let isValid = true;
+        let errorMessage = '';
+
+        // Clear previous states
+        field.classList.remove('error', 'success');
+
+        // Required field validation
+        if (field.hasAttribute('required') && !field.value.trim()) {
+          isValid = false;
+          errorMessage = 'This field is required';
+        }
+        
+        // Email validation
+        else if (field.type === 'email' && field.value) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(field.value)) {
+            isValid = false;
+            errorMessage = 'Please enter a valid email address';
+          }
+        }
+        
+        // URL validation - flexible for domains with or without protocol
+        else if (field.type === 'url' && field.value) {
+          const urlValue = field.value.trim();
+          // Allow domains like "example.com" or full URLs like "https://example.com"
+          const domainRegex = /^([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
+          const hasProtocol = urlValue.startsWith('http://') || urlValue.startsWith('https://');
+          
+          if (hasProtocol) {
+            // Validate as full URL
+            try {
+              new URL(urlValue);
+            } catch {
+              isValid = false;
+              errorMessage = 'Please enter a valid URL';
+            }
+          } else {
+            // Validate as domain name
+            if (!domainRegex.test(urlValue)) {
+              isValid = false;
+              errorMessage = 'Please enter a valid domain (e.g., example.com) or URL (e.g., https://example.com)';
+            }
+          }
+        }
+        
+        // Phone validation
+        else if (field.type === 'tel' && field.value) {
+          // Remove all non-digit characters for validation
+          const phoneDigits = field.value.replace(/\D/g, '');
+          // Check for Indian phone numbers (10 digits) or international format
+          if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+            isValid = false;
+            errorMessage = 'Please enter a valid phone number (10-15 digits)';
+          }
+        }
+
+        // Message length validation
+        else if (field.id === 'message' && field.value.length > 500) {
+          isValid = false;
+          errorMessage = 'Message must be 500 characters or less';
+        }
+
+        // Update field appearance and error message
+        if (isValid) {
+          field.classList.add('success');
+          errorDiv.textContent = '';
+          errorDiv.classList.remove('show');
+        } else {
+          field.classList.add('error');
+          errorDiv.textContent = errorMessage;
+          errorDiv.classList.add('show');
+        }
+
+        return isValid;
+      }
+
+      function clearErrors(e) {
+        const field = e.target;
+        const errorDiv = document.getElementById(field.id + '-error');
+        field.classList.remove('error');
+        errorDiv.classList.remove('show');
+      }
+
+      // Form submission
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        // Validate all fields
+        let formValid = true;
+        inputs.forEach(input => {
+          const fieldValid = validateField({ target: input });
+          // Only mark form invalid if a required field is invalid or an optional field has validation errors
+          if (!fieldValid && (input.hasAttribute('required') || input.value.trim())) {
+            formValid = false;
+          }
+        });
+
+        if (!formValid) {
+          // Scroll to first error
+          const firstError = form.querySelector('.error');
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            firstError.focus();
+          }
+          return;
+        }
+
+        // Show loading state
+        submitBtn.disabled = true;
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline-flex';
+        formMessages.style.display = 'none';
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            // Success
+            showMessage('success');
+            form.reset();
+            charCount.textContent = '0';
+            charCounter.className = 'char-counter';
+            
+            // Clear all field states
+            inputs.forEach(input => {
+              input.classList.remove('success', 'error');
+              const errorDiv = document.getElementById(input.id + '-error');
+              if (errorDiv) {
+                errorDiv.classList.remove('show');
+              }
+            });
+          } else {
+            // Error
+            showMessage('error');
+          }
+        } catch (error) {
+          // Network error
+          showMessage('error');
+        }
+
+        // Reset button state
+        submitBtn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+      });
+
+      function showMessage(type) {
+        formMessages.style.display = 'block';
+        successMessage.style.display = type === 'success' ? 'flex' : 'none';
+        errorMessage.style.display = type === 'error' ? 'flex' : 'none';
+        
+        // Scroll to message
+        formMessages.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Auto-hide success message after 8 seconds
+        if (type === 'success') {
+          setTimeout(() => {
+            formMessages.style.display = 'none';
+          }, 8000);
+        }
+      }
+
+      // Smooth scrolling for contact links
+      document.querySelectorAll('a[href="#contact"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.getElementById('contact').scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+    });
   </script>
 </body>
 </html> 
