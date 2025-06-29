@@ -55,18 +55,36 @@
   <header class="navbar">
     <div class="container">
       <div class="logo">
-        <img src="lindygeo.png" alt="Lindy GEO logo" loading="lazy" />
+        <picture>
+          <source srcset="lindygeot-logo.jpg" type="image/jpeg" media="(max-width: 768px)">
+          <img src="lindygeo.png" alt="Lindy GEO logo" loading="lazy" width="32" height="32" />
+        </picture>
         <span>Lindy GEO</span>
       </div>
-      <nav>
+      <nav class="desktop-nav">
         <ul class="nav-links">
           <li><a href="index.html#services">Services</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </nav>
-      <a href="index.html#contact" class="btn btn-outline">Get In Touch</a>
+      <div class="mobile-menu-toggle" id="mobileMenuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <a href="index.html#contact" class="btn btn-outline desktop-btn">Get In Touch</a>
     </div>
+    
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+      <ul class="mobile-nav-links">
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="index.html#contact" class="btn btn-primary mobile-cta">Get In Touch</a></li>
+      </ul>
+    </nav>
   </header>
 
   <!-- Blog Header -->
@@ -88,10 +106,14 @@
         <!-- Featured Article - Large -->
         <article class="bento-item bento-large">
           <div class="bento-content">
-            <img src="genaibg.jpg" alt="Generative Engine Optimization Guide" class="bento-image" loading="lazy" />
+            <picture>
+              <source media="(max-width: 768px)" srcset="genaibg.jpg" type="image/jpeg">
+              <source media="(max-width: 1024px)" srcset="genaibg.jpg" type="image/jpeg">
+              <img src="genaibg.jpg" alt="Generative Engine Optimization Guide" class="bento-image" loading="lazy" width="800" height="450" />
+            </picture>
             <div class="bento-text">
               <span class="blog-category">Featured Guide</span>
-              <h2><a href="geo-guide.html">The Definitive Guide to Generative Engine Optimisation (GEO)</a></h2>
+              <h2><a href="blog/definitive-guide-generative-engine-optimization.html">The Definitive Guide to Generative Engine Optimisation (GEO)</a></h2>
               <p>Master the new frontier of digital visibility. Learn how GEO is revolutionizing search beyond traditional SEO.</p>
               <div class="blog-meta">
                 <time datetime="2025-01-27">Jan 27, 2025</time>
@@ -101,13 +123,27 @@
           </div>
         </article>
 
-        <!-- Placeholder Cards -->
-        <div class="bento-item bento-medium bento-placeholder">
+        <!-- Second Article -->
+        <article class="bento-item bento-medium">
           <div class="bento-content">
-            <span class="placeholder-text">Coming Soon</span>
+            <picture>
+              <source media="(max-width: 768px)" srcset="abstract-expressionism-thumb.jpg" type="image/jpeg">
+              <source media="(max-width: 1024px)" srcset="abstract-expressionism-thumb.jpg" type="image/jpeg">
+              <img src="abstract-expressionism-thumb.jpg" alt="Actionable GEO Strategies" class="bento-image" loading="lazy" width="600" height="338" />
+            </picture>
+            <div class="bento-text">
+              <span class="blog-category">Strategy Guide</span>
+              <h2><a href="blog/actionable-geo-10-strategies-to-get-cited-by-ai.html">Actionable GEO: 10 Strategies to Get Your Content Cited by AI</a></h2>
+              <p>Learn 10 proven strategies to get your content cited by AI systems with actionable tactics for better GEO performance.</p>
+              <div class="blog-meta">
+                <time datetime="2025-01-27">Jan 27, 2025</time>
+                <span>8 min read</span>
+              </div>
+            </div>
           </div>
-        </div>
+        </article>
 
+        <!-- Placeholder Card -->
         <div class="bento-item bento-medium bento-placeholder">
           <div class="bento-content">
             <span class="placeholder-text">Coming Soon</span>
@@ -163,6 +199,34 @@
       star.style.left = Math.random() * 100 + '%';
       star.style.animationDelay = Math.random() * 5 + 's';
       starContainer.appendChild(star);
+    }
+
+    /* Mobile Menu Toggle */
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    if (mobileMenuToggle && mobileNav) {
+      mobileMenuToggle.addEventListener('click', function() {
+        mobileNav.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active');
+      });
+
+      // Close mobile menu when clicking on a link
+      const mobileNavLinks = mobileNav.querySelectorAll('a');
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
+        });
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!mobileMenuToggle.contains(event.target) && !mobileNav.contains(event.target)) {
+          mobileNav.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
+        }
+      });
     }
   </script>
 </body>

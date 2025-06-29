@@ -55,18 +55,36 @@
   <header class="navbar">
     <div class="container">
       <div class="logo">
-        <img src="lindygeo.png" alt="Lindy GEO logo" loading="lazy" />
+        <picture>
+          <source srcset="lindygeot-logo.jpg" type="image/jpeg" media="(max-width: 768px)">
+          <img src="lindygeo.png" alt="Lindy GEO logo" loading="lazy" width="32" height="32" />
+        </picture>
         <span>Lindy GEO</span>
       </div>
-      <nav>
+      <nav class="desktop-nav">
         <ul class="nav-links">
           <li><a href="#services">Services</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      <div class="mobile-menu-toggle" id="mobileMenuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <a href="#contact" class="btn btn-outline desktop-btn">Get In Touch</a>
     </div>
+    
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+      <ul class="mobile-nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="btn btn-primary mobile-cta">Get In Touch</a></li>
+      </ul>
+    </nav>
   </header>
 
   <!-- Hero Section -->
@@ -135,7 +153,7 @@
         <p class="about-text" style="margin-bottom:0;">We execute comprehensive technical optimizations ensuring your content architecture aligns with AI discovery patterns.</p>
       </div>
 
-      <a href="services.html" class="btn btn-outline services-cta">Explore Our Services</a>
+      <a href="#contact" class="btn btn-outline services-cta">Explore Our Services</a>
     </div>
   </section>
 
@@ -586,6 +604,34 @@
       document.addEventListener('DOMContentLoaded', initializeContactForm);
     } else {
       initializeContactForm();
+    }
+
+    /* Mobile Menu Toggle */
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    if (mobileMenuToggle && mobileNav) {
+      mobileMenuToggle.addEventListener('click', function() {
+        mobileNav.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active');
+      });
+
+      // Close mobile menu when clicking on a link
+      const mobileNavLinks = mobileNav.querySelectorAll('a');
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
+        });
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!mobileMenuToggle.contains(event.target) && !mobileNav.contains(event.target)) {
+          mobileNav.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
+        }
+      });
     }
   </script>
 </body>
