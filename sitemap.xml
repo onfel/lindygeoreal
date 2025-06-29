@@ -38,13 +38,13 @@
     </news:news>
   </url>
   
-  <!-- Case Studies Page -->
-  <url>
+  <!-- Case Studies Page - Hidden for now -->
+  <!-- <url>
     <loc>https://lindygeo.com/case-studies.html</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
+  </url> -->
   
   <!-- Services Pages (if created separately) -->
   <url>
