@@ -1054,6 +1054,7 @@ blockquote {
   color: #ffffffcc;
   font-weight: 500;
   transition: color 0.3s ease;
+  text-align: center;
 }
 
 .contact-icon {
@@ -1079,12 +1080,14 @@ blockquote {
   margin: 0 0 0.25rem 0;
   font-weight: 600;
   font-size: 1.1rem;
+  text-align: center;
 }
 
 .contact-method a {
   color: #ffffffcc;
   text-decoration: none;
   transition: color 0.2s;
+  text-align: center;
 }
 
 .contact-method a:hover {
