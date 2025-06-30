@@ -419,7 +419,7 @@ body::after {
 
 /* About Section */
 .about {
-  padding: 6rem 0;
+  padding: 3rem 0;
   position: relative;
 }
 
@@ -465,7 +465,7 @@ body::after {
   font-size: 1rem;
   color: #ffffffcc;
   line-height: 1.7;
-  margin-bottom: 2.5rem;
+  margin-bottom: 0;
   max-width: 48ch;
 }
 
@@ -487,6 +487,17 @@ body::after {
   display:flex;
   flex-direction:column;
   justify-content:flex-start;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(100, 255, 218, 0.3);
+  text-decoration: none;
+  color: inherit;
 }
 
 .card-small {
@@ -834,9 +845,10 @@ section {
 }
 
 .blog-content section {
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0;
+  padding-top: 0;
+  border-bottom: none;
 }
 
 /* Remove extra space after last element in a section */
@@ -847,35 +859,35 @@ section {
 .blog-content h2 {
   font-size: clamp(1.5rem, 4vw, 2.25rem);
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   margin-top: 0;
 }
 
 .blog-content h3 {
   font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 1rem;
-  margin-top: 1.5rem;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .blog-content p {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .lead {
   font-size: 1.1rem;
   font-weight: 500;
   color: #ffffffdd;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 
 .blog-content ul, .blog-content ol {
   margin-left: 1.5rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0;
 }
 
 .blog-content li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 
 blockquote {
@@ -891,7 +903,7 @@ blockquote {
   border: 1px solid rgba(77, 109, 255, 0.3);
   border-radius: 0.5rem;
   padding: 1rem;
-  margin: 1rem 0 0.5rem 0;
+  margin: 0;
 }
 
 .cta-inline a {
@@ -1066,8 +1078,6 @@ blockquote {
 .bento-large .blog-meta span {
   margin-right: 1rem;
 }
-
-
 
 /* Placeholder Cards */
 .bento-placeholder {
@@ -1582,4 +1592,65 @@ blockquote {
   .form-footer p {
     font-size: 0.8rem;
   }
+}
+
+/* Ensure CTA button inside inline banner remains white */
+.cta-inline a.btn-primary {
+  color: #ffffff !important;
+}
+
+/* Home page segment divider: apply to all sections after first on index page */
+body.homepage section + section {
+  padding-top: 6rem; /* slight increase over defaults */
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Read-more indicator on service cards */
+.read-more {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: #4d6dff;
+  transition: color 0.2s ease;
+}
+
+.card:hover .read-more {
+  color: #64ffda;
+}
+
+/* Service index intro text centering */
+.service-intro-text {
+  text-align: center;
+  margin: 0 auto 2rem auto;
+  max-width: 60ch;
+}
+
+/* Center align blog-content inside service pages */
+body.service-page .blog-content,
+body.service-page .blog-content h2,
+body.service-page .blog-content h3,
+body.service-page .blog-content p,
+body.service-page .blog-content li {
+  text-align: left;
+}
+
+/* Center align service cards on services index */
+.services-grid .card {
+  text-align: center;
+}
+
+/* Center hero section on service detail pages */
+body.service-page .service-hero .container {
+  text-align: center;
+}
+body.service-page .service-hero .breadcrumb {
+  justify-content: center;
+  text-align: center;
+}
+
+/* Divider before related services on service pages */
+.related-services {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 3rem !important;
+  margin-top: 3rem;
 } 
