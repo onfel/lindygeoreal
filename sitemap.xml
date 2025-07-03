@@ -24,7 +24,7 @@
   
   <!-- Blog Posts -->
   <url>
-    <loc>https://lindygeo.com/blog/definitive-guide-ai-search-optimization.html</loc>
+    <loc>https://lindygeo.com/blog/definitive-guide-generative-engine-optimization.html</loc>
     <lastmod>2025-06-28T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -34,13 +34,13 @@
         <news:language>en</news:language>
       </news:publication>
       <news:publication_date>2025-06-28T00:00:00+00:00</news:publication_date>
-      <news:title>The Definitive Guide to AI Search Optimisation (ASO)</news:title>
+      <news:title>AI Search Optimisation (ASO): The Definitive Playbook for 2025 and Beyond</news:title>
     </news:news>
   </url>
   
   <!-- Blog Posts - Second Article -->
   <url>
-    <loc>https://lindygeo.com/blog/actionable-aso-10-strategies-to-get-cited-by-ai.html</loc>
+    <loc>https://lindygeo.com/blog/actionable-geo-10-strategies-to-get-cited-by-ai.html</loc>
     <lastmod>2025-06-28T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -50,13 +50,13 @@
         <news:language>en</news:language>
       </news:publication>
       <news:publication_date>2025-06-28T00:00:00+00:00</news:publication_date>
-      <news:title>Actionable ASO: 10 Strategies to Get Your Content Cited by AI</news:title>
+      <news:title>Actionable Generative Engine Optimisation (GEO): 10 Strategies to Get Your Content Cited by AI</news:title>
     </news:news>
   </url>
   
   <!-- Blog Posts - Brand Findability -->
   <url>
-    <loc>https://lindygeo.com/blog/brand-findability-long-term-factor-aso.html</loc>
+    <loc>https://lindygeo.com/blog/brand-findability-long-term-factor-geo.html</loc>
     <lastmod>2025-07-01T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
